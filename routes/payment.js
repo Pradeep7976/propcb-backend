@@ -22,35 +22,35 @@ router.post("/orders", async (req, res) => {
 				return res.status(500).json({ message: "Something Went Wrong!" });
 			}
 			res.status(200).json({ data: order });
-    //   console.log(order.id);
-    //   var options = {
-    //     "key_id": process.env.KEY_ID, 
-    //     "key_secret":process.env.KEY_SECRET,
-    //     "amount": "49900", 
-    //     "currency": "INR",
-    //     "name": "Dummy Academy",
-    //     "description": "Pay & Checkout this Course, Upgrade your DSA Skill",
-    //      "image": "",
-    //     "order_id":order.id,  
-    //     "handler": function (response){
-    //         console.log(response)
-    //         res.send("This step of Payment Succeeded");
-    //     },
-    //    "notes" : {
-    //       "description":"Best Course for SDE placements",
-    //       "language":"Available in 4 major Languages JAVA,  C/C++, Python, Javascript",
-    //       "access":"This course have Lifetime Access"
-    //     }, 
-    //     "theme": {
-    //         "color": "#2300a3"
-    //     }
-    // };
-    // var razorpayObject =await new Razorpay(options);
-    // console.log(razorpayObject);
-    // razorpayObject.on('payment.failed', function (response){
-    //       console.log(response);
-    //       res.send("This step of Payment Failed");
-    // });
+      console.log(order.id);
+      var options = {
+        "key_id": process.env.KEY_ID, 
+        "key_secret":process.env.KEY_SECRET,
+        "amount": "49900", 
+        "currency": "INR",
+        "name": "Dummy Academy",
+        "description": "Pay & Checkout this Course, Upgrade your DSA Skill",
+         "image": "",
+        "order_id":order.id,  
+        "handler": function (response){
+            console.log(response)
+            res.send("This step of Payment Succeeded");
+        },
+       "notes" : {
+          "description":"Best Course for SDE placements",
+          "language":"Available in 4 major Languages JAVA,  C/C++, Python, Javascript",
+          "access":"This course have Lifetime Access"
+        }, 
+        "theme": {
+            "color": "#2300a3"
+        }
+    };
+    var razorpayObject =await new Razorpay(options);
+    console.log(razorpayObject);
+    razorpayObject.on('payment.failed', function (response){
+          console.log(response);
+          res.send("This step of Payment Failed");
+    });
 		});
 	} catch (error) {
 		res.status(500).json({ message: "Internal Server Error!" });
