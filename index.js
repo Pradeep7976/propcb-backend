@@ -4,6 +4,7 @@ const app = express();
 const port = 8080;
 
 let cors = require("cors");
+require("dotenv").config();
 // const Razorpay = require('razorpay');
 
 // const razorpayInstance = new Razorpay({
@@ -54,6 +55,6 @@ app.use("/order", orderRoute);
 app.use("/category", categoryRoute);
 app.use("/cart", cartRoute);
 app.use("/invoice", invoiceRoute);
-app.listen(port, () => {
-  console.log(`App running on port ${port}.`);
+app.listen(port || process.env.PORT, () => {
+  console.log(`App running on port ${port} And ${process.env.PORT}.`);
 });
